@@ -1,114 +1,114 @@
-# LinkedIn Automation Proof-of-Concept (Go + Rod)
+🎯 Project Objective
+Build a Go-based LinkedIn automation PoC that demonstrates:
+Advanced browser automation using Rod
+Human-like interaction behavior
+Anti-bot and stealth techniques
+Ethical handling of security checkpoints (CAPTCHA / 2FA)
+Clean, modular, maintainable Go architecture
 
-> ⚠️ **Educational Purpose Only**
->
-> This project is a technical proof-of-concept created strictly for evaluation and learning purposes.  
-> Automating LinkedIn violates LinkedIn’s Terms of Service.  
-> **Do NOT use this project on real accounts or in production environments.**
+🧩 Core Features
+✅ Authentication System
+Login using environment variables
+Graceful handling of login failures
+Detection of security checkpoints (CAPTCHA / 2FA)
+Human-in-the-loop login recovery
+Persistent session cookies for reuse
 
----
+🔍 Search & Targeting
+Search users by keyword (e.g., job title)
+DOM parsing to extract profile URLs
+Pagination and scrolling support
+Duplicate profile handling
 
-## 📌 Overview
+🤝 Connection Requests
+Programmatic navigation to profiles
+Precise detection of the Connect action
+Optional personalized notes
+Rate limiting and daily caps
+Safe skipping when Connect is unavailable (Follow / limits / UI changes)
+Connection success is not guaranteed and not required.
 
-This repository demonstrates an advanced browser automation system built in **Go** using the **Rod** library.  
-The goal is to showcase:
+🕵️ Anti-Bot & Stealth Techniques
+Implemented stealth mechanisms include:
+Browser fingerprint masking (navigator.webdriver)
+Randomized delays and think times
+Human-like scrolling behavior
+Mouse hovering and movement simulation
+Typing simulation with variable speed
+Rate limiting and cooldown enforcement
+Session reuse to avoid repeated logins
+Ethical handling of CAPTCHA / 2FA (no bypassing)
 
-- Human-like browser interaction
-- Anti-detection / stealth techniques
-- Clean, modular Go architecture
-- Ethical automation practices
+🗂️ Project Structure
+linkedin-messenger-automation-poc/
+│
+├── cmd/
+│   └── app/
+│       └── main.go          # Application entry point
+│
+├── internal/
+│   ├── auth/                # Login & authentication logic
+│   ├── browser/             # Browser initialization
+│   ├── connect/             # Connection request workflow
+│   ├── logger/              # Structured logging
+│   ├── message/             # Messaging (PoC placeholder)
+│   ├── search/              # Search & profile extraction
+│   ├── stealth/             # Anti-detection techniques
+│   └── storage/             # Session cookie persistence
+│
+├── configs/
+│   └── config.yaml          # Optional configuration file
+│
+├── .env.example             # Environment variable template
+├── .gitignore               # Git ignore rules
+├── go.mod / go.sum          # Go module files
+└── README.md
 
-The project focuses on **how** automation works, not on abusing platforms.
 
----
+⚙️ Setup Instructions
+1️⃣ Prerequisites
+Go 1.20+
+Google Chrome / Chromium
+macOS / Linux / Windows
 
-## ✨ Features
-
-### 🔐 Authentication
-- Login using environment variables
-- Graceful handling of login failures
-- Detection of security checkpoints (CAPTCHA / 2FA)
-- Persistent session cookies for reuse
-
-### 🔍 Search & Targeting
-- Search LinkedIn users by keyword
-- Collect and deduplicate profile URLs
-- Handle pagination
-- Human-like scrolling behavior
-
-### 🤝 Connection Requests
-- Visit profiles programmatically
-- Detect and click **Connect** button safely
-- Skip already connected / pending profiles
-- Optional personalized note
-- Enforced rate limits
-
-### 🥷 Anti-Detection Techniques
-Implemented multiple stealth mechanisms including:
-- Randomized delays and cooldowns
-- Mouse hovering and cursor movement
-- Human-like typing simulation
-- Scroll acceleration / deceleration
-- Browser fingerprint masking
-- Session reuse (reduces bot signals)
-
-> ⚠️ This project **does NOT** bypass CAPTCHA, 2FA, or security mechanisms by design.
-
----
-
-## 🧱 Architecture
-
-cmd/
-└── app/
-└── main.go
-
-internal/
-├── auth/ # Login & checkpoint detection
-├── browser/ # Browser initialization
-├── connect/ # Connection request logic
-├── search/ # Profile search & pagination
-├── stealth/ # Anti-detection techniques
-├── storage/ # Cookie/session persistence
-└── logger/ # Structured logging
-
-yaml
-Copy code
-
-The codebase follows:
-- Clear separation of concerns
-- Idiomatic Go practices
-- Defensive automation patterns
-
----
-
-## ⚙️ Setup Instructions
-
-### 1️⃣ Clone Repository
-
-git clone <your-repo-url>
-cd linkedin-messenger-automation-poc
-2️⃣ Install Dependencies
-bash
-Copy code
-go mod tidy
-3️⃣ Environment Configuration
-Create a .env file (do NOT commit it):
-
-env
-
-LINKEDIN_EMAIL=your_email
+2️⃣ Environment Configuration
+Create a .env file using the template: cp .env.example .env
+Example .env.example:
+LINKEDIN_EMAIL=your_email@example.com
 LINKEDIN_PASSWORD=your_password
 HEADLESS=false
-DAILY_CONNECT_LIMIT=2
-Refer to .env.example for guidance.
+DAILY_CONNECT_LIMIT=10
 
-▶️ Running the Project
+3️⃣ Install Dependencies
+go mod tidy
+
+4️⃣ Run the Application
 go run cmd/app/main.go
 
-Expected Flow
-Browser launches with stealth enabled
-Existing session cookies loaded (if available)
-Login attempted only if required
-Search performed
-Profiles collected
-Connection requests sent (within limits)
+🔐 CAPTCHA & Manual Login Handling
+If LinkedIn presents a CAPTCHA or 2FA:
+The program pauses automatically
+Browser remains open
+User completes login manually
+Program detects successful login
+Session cookies are saved
+Execution resumes automatically
+This behavior is intentional and ethical.
+
+📊 Expected Runtime Flow
+Launch Browser
+→ Apply Stealth
+→ Load Session Cookies
+→ Detect Login State
+→ Handle CAPTCHA if needed
+→ Save Session
+→ Search Profiles
+→ Attempt Connect Requests (rate-limited)
+
+🏁 Final Notes
+This project demonstrates:
+Real-world automation challenges
+Responsible engineering practices
+Clean Go architecture
+Advanced browser automation concepts
+Not intended for real-world use.
