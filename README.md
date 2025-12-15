@@ -1,3 +1,5 @@
+LinkedIn Automation Assignment (PoC)
+
 🎯 Project Objective
 Build a Go-based LinkedIn automation PoC that demonstrates:
 Advanced browser automation using Rod
@@ -40,29 +42,18 @@ Session reuse to avoid repeated logins
 Ethical handling of CAPTCHA / 2FA (no bypassing)
 
 🗂️ Project Structure
-linkedin-messenger-automation-poc/
-│
-├── cmd/
-│   └── app/
-│       └── main.go          # Application entry point
-│
-├── internal/
-│   ├── auth/                # Login & authentication logic
-│   ├── browser/             # Browser initialization
-│   ├── connect/             # Connection request workflow
-│   ├── logger/              # Structured logging
-│   ├── message/             # Messaging (PoC placeholder)
-│   ├── search/              # Search & profile extraction
-│   ├── stealth/             # Anti-detection techniques
-│   └── storage/             # Session cookie persistence
-│
-├── configs/
-│   └── config.yaml          # Optional configuration file
-│
-├── .env.example             # Environment variable template
-├── .gitignore               # Git ignore rules
-├── go.mod / go.sum          # Go module files
-└── README.md
+cmd/
+  app/                → Entry point
+internal/
+  auth/               → Login logic
+  browser/            → Browser setup
+  search/             → Profile search
+  connect/            → Connection workflow
+  stealth/            → Anti-detection utilities
+  storage/            → Cookie persistence
+  logger/             → Structured logging
+configs/
+  config.yaml         → App configuration
 
 
 ⚙️ Setup Instructions
