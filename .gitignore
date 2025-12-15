@@ -1,0 +1,9 @@
+.env
+*.db
+*.json
+*.log
+cookies/
+sessions/
+
+.DS_Store
+.env.yaml

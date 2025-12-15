@@ -1,0 +1,6 @@
+browser:
+  headless: false
+
+stealth:
+  min_delay_ms: 800
+  max_delay_ms: 2500
